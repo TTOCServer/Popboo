@@ -1,0 +1,35 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'          # 改为你的 JDK 版本，例如 8、11、17 等
+          distribution: 'temurin'     # 使用 Eclipse Temurin 发行版
+          cache: maven                # 缓存 Maven 依赖
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      # 可选：上传构建生成的 JAR 文件作为 Artifact
+      - name: Upload plugin JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: minecraft-plugin
+          path: target/*.jar          # 根据你的 Maven 打包输出路径调整
+
+      # 可选：如果你需要依赖图功能（用于 Dependabot 安全更新），可以保留下面步骤
+      # - name: Update dependency graph
+      #   uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
