@@ -1,0 +1,16 @@
+name: Popboo
+version: '1.0-SNAPSHOT'
+main: cn.craftimr.popboo.Popboo
+api-version: '1.14'
+authors: [ OutHimic ]
+description: 爆竹声中一命除。
+
+commands:
+  popboo:
+    description: Popboo 管理命令
+    usage: /popboo reload
+    permission: popboo.admin
+
+permissions:
+  popboo.admin:
+    default: op
