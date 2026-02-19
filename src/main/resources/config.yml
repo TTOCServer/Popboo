@@ -1,0 +1,77 @@
+# Popboo 配置文件（UTF-8）
+# Popboo config (UTF-8)
+#
+# 概率类参数范围建议为 0.0-1.0；ticks 为游戏刻（20 ticks = 1 秒）
+# Probability values are recommended in 0.0-1.0; ticks are game ticks (20 ticks = 1 second)
+
+# 是否启用插件
+# Enable/disable plugin
+enabled: true
+
+# 挂载爆竹概率
+# Chance to arm a "popboo" (delayed explosion)
+chance:
+  # 方块点火/火焰蔓延时，竹子方块/竹子制品被“挂载”的概率
+  # Chance to arm when bamboo-related blocks are ignited / fire spreads nearby
+  blockIgnite: 0.6
+  # 竹子相关物品作为燃料开始燃烧时，被“挂载”的概率
+  # Chance to arm when bamboo-related items start burning as furnace fuel
+  furnaceFuel: 0.3
+
+# 烧毁兜底（可选）
+# Burn fallback (optional)
+#
+# 说明：默认情况下，只有“已挂载”的方块在烧毁时才会立即引爆。
+# 当你打开兜底后：即使没来得及挂载，在方块烧毁瞬间也会按概率引爆（会更吵/更频繁）。
+# Note: by default only "armed" blocks explode when they burn away.
+# When enabled, even unarmed bamboo-related blocks may explode on burn (noisier/more frequent).
+blockBurnFallback:
+  # 是否启用烧毁兜底
+  # Enable burn fallback
+  enabled: false
+  # 烧毁兜底触发概率
+  # Burn fallback chance
+  chance: 0.2
+
+# 延迟爆炸时间窗口（ticks）
+# Delayed explosion window (ticks)
+delayTicks:
+  # 最小延迟
+  # Min delay
+  min: 10
+  # 最大延迟
+  # Max delay
+  max: 60
+
+# 爆炸参数
+# Explosion settings
+explosion:
+  # 爆炸威力（越大伤害/破坏越强）
+  # Explosion power (higher = more damage/breaking)
+  power: 4.5
+  # 是否产生火焰
+  # Whether explosions create fire
+  createFire: false
+  # 是否破坏方块
+  # Whether explosions break blocks
+  breakBlocks: true
+  # 是否开启连锁引爆（附近已挂载点会被引爆）
+  # Enable chain detonation (nearby armed points are triggered)
+  chainEnabled: true
+  # 连锁半径（方块距离）
+  # Chain radius (in blocks)
+  chainRadius: 6
+  # 单次爆炸最多连锁引爆数量（安全阀）
+  # Max chained triggers per explosion (safety cap)
+  chainMaxCount: 20
+
+# 炉子相关
+# Furnace settings
+furnace:
+  # 同一个炉子位置的触发冷却（ticks），避免燃料连续触发过密爆炸
+  # Cooldown per furnace location (ticks) to avoid spam
+  cooldownTicks: 40
+
+# 调试日志开关（建议排查问题时打开）
+# Debug logs switch (enable when troubleshooting)
+debug: false
